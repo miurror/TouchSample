@@ -20,15 +20,25 @@ public class LanceController : MonoBehaviour {
 			Coroutine coroutine = StartCoroutine("DelayMethod", 0.2f);
 		}
 
-		float v1 = Input.GetAxis("Horizontal") * speed;
-		float v2 = Input.GetAxis("Vertical") * speed;
+		float v1 = bulletMode ? 0f : Input.GetAxis("Horizontal") * speed;
+		float v2 = bulletMode ? 0f : Input.GetAxis("Vertical") * speed;
 		float v3 = bulletMode ? bulletSpeed : 0f;
-		float r1 = Input.GetAxis("Horizontal2");
-		float r2 = Input.GetAxis("Vertical2");
+		float r1 = bulletMode ? 0f : Input.GetAxis("Horizontal2");
+		float r2 = bulletMode ? 0f : Input.GetAxis("Vertical2");
 
 		transform.Translate(v1,v2,0f,Space.World);
 		transform.Translate(0f,0f,v3);
 		transform.Rotate(r2,r1,0f,Space.World);
+
+		if(transform.position.magnitude>15f){
+			//Debug.Log("reload!");
+			bulletMode = false;
+			GetComponent<Rigidbody>().useGravity = false;
+			GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+			GetComponent<Rigidbody>().angularVelocity = new Vector3 (0,0,0);
+			transform.position = transform.parent.gameObject.transform.position;
+			transform.rotation = transform.parent.gameObject.transform.rotation;
+		}
 
 	}
 
