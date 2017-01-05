@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeController : MonoBehaviour {
+public class LanceController : MonoBehaviour {
 
 	public float speed = 0f;
 	public float bulletSpeed = 0f;

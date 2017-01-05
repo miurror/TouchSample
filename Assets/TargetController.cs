@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeController2 : MonoBehaviour {
+public class TargetController : MonoBehaviour {
 
 	void Update () {
 		transform.Rotate(1f,1f,1f);
