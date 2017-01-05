@@ -20,7 +20,8 @@ public class CubeController : MonoBehaviour {
 		float r1 = Input.GetAxis("Horizontal2");
 		float r2 = Input.GetAxis("Vertical2");
 
-		transform.Translate(v1,v2,v3);
+		transform.Translate(v1,v2,0f,Space.World);
+		transform.Translate(0f,0f,v3);
 		transform.Rotate(r2,r1,0f,Space.World);
 
 	}
