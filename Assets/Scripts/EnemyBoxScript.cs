@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyBoxScript : MonoBehaviour {
 
-	public GameObject obj;
+	public GameObject enemy;
 
 	// Use this for initialization
 	void Start () {
 		for(int i=1; i<=10; ++i){
-			Instantiate(obj, new Vector3(Random.Range(-5f,5f),Random.Range(-5f,5f),Random.Range(-5f,5f)), Quaternion.identity);
+			Instantiate(enemy, new Vector3(Random.Range(-5f,5f),Random.Range(-5f,5f),Random.Range(-3f,3f)), Quaternion.identity);
 		}
 	}
 	

@@ -7,6 +7,7 @@ public class LanceController : MonoBehaviour {
 	public float speed = 0f;
 	public float bulletSpeed = 0f;
 	public bool bulletMode = false;
+	public GameObject maincamera;	
     private AudioSource[] sources;
 
     void Start () {
@@ -36,8 +37,8 @@ public class LanceController : MonoBehaviour {
 			GetComponent<Rigidbody>().useGravity = false;
 			GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 			GetComponent<Rigidbody>().angularVelocity = new Vector3 (0,0,0);
-			transform.position = transform.parent.gameObject.transform.position;
-			transform.rotation = transform.parent.gameObject.transform.rotation;
+			transform.position = maincamera.transform.position + new Vector3 (0, -0.1f, 1f);
+			transform.rotation = maincamera.transform.rotation;
 		}
 
 	}
