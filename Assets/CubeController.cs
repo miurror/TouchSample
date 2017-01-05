@@ -25,4 +25,14 @@ public class CubeController : MonoBehaviour {
 		transform.Rotate(r2,r1,0f,Space.World);
 
 	}
+
+	void OnCollisionEnter (Collision obj) {
+		
+		//Debug.Log("hit!");
+		bulletMode = false;
+		Destroy(obj.gameObject);
+		GetComponent<Rigidbody>().useGravity = true;
+
+	}
+
 }
