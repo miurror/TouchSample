@@ -453,6 +453,10 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   cloudProjectId: b4e66954-cedf-4fa4-b440-5bfa8f8aa1e8
   projectName: unity_sample
