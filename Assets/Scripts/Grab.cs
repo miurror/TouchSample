@@ -52,7 +52,6 @@ public class Grab : MonoBehaviour {
 		}
 	}
 	
-
 	Vector3 GetAngularVelocity(){
 		Quaternion deltaRotation = currentRotation * Quaternion.Inverse(lastRotation);
 		return new Vector3(Mathf.DeltaAngle(0, deltaRotation.eulerAngles.x), Mathf.DeltaAngle(0, deltaRotation.eulerAngles.y), Mathf.DeltaAngle(0, deltaRotation.eulerAngles.z));
