@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour {
 
+
+	public OVRInput.Controller controller;
+	public string buttonName;
+
 	public float grabRadius;
 	public LayerMask grabMask;
 
 	private GameObject grabbedObject;
 	private bool grabbing;
+
+	private Quaternion lastRotation, currentRotation;
 
 	void GrabObject(){
 		grabbing = true;
@@ -34,12 +40,33 @@ public class Grab : MonoBehaviour {
 
 	void DropObject(){
 		grabbing = false;
+
+		if (grabbedObject != null){
+			grabbedObject.transform.parent = null;
+			grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+			grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(controller);
+			grabbedObject.GetComponent<Rigidbody>().angularVelocity = GetAngularVelocity();
+
+			grabbedObject = null;
+		
+		}
 	}
 	
+
+	Vector3 GetAngularVelocity(){
+		Quaternion deltaRotation = currentRotation * Quaternion.Inverse(lastRotation);
+		return new Vector3(Mathf.DeltaAngle(0, deltaRotation.eulerAngles.x), Mathf.DeltaAngle(0, deltaRotation.eulerAngles.y), Mathf.DeltaAngle(0, deltaRotation.eulerAngles.z));
+	}
+
 	void Update () {
 	
-		if(!grabbing && Input.GetAxis("RHandTrigger") == 1) GrabObject();
-		if(grabbing && Input.GetAxis("RHandTrigger") < 1) DropObject();
+		if (grabbedObject != null){
+			lastRotation = currentRotation;
+			currentRotation = grabbedObject.transform.rotation;
+		}
+
+		if(!grabbing && Input.GetAxis(buttonName) == 1) GrabObject();
+		if(grabbing && Input.GetAxis(buttonName) < 1) DropObject();
 
 	}
 }
