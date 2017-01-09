@@ -35,6 +35,16 @@ public class Grab : MonoBehaviour {
 			grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 			grabbedObject.transform.position = transform.position;
 			grabbedObject.transform.parent = transform;
+
+			if(grabbedObject.name == "ToyGun"){
+				grabbedObject.transform.rotation = transform.rotation * Quaternion.Euler(-90, 180, 0);
+				grabbedObject.GetComponent<Gun>().bulletMode = true;
+				if(gameObject.name == "RightHand"){
+					grabbedObject.GetComponent<Gun>().rightHand = true;
+				}else{
+					grabbedObject.GetComponent<Gun>().rightHand = false;
+				}
+			}
 		}
 	}
 
@@ -42,6 +52,11 @@ public class Grab : MonoBehaviour {
 		grabbing = false;
 
 		if (grabbedObject != null){
+			
+			if(grabbedObject.name == "ToyGun"){
+				grabbedObject.GetComponent<Gun>().bulletMode = false;
+			}
+
 			grabbedObject.transform.parent = null;
 			grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
 			grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(controller);

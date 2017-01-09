@@ -15,8 +15,8 @@ TagManager:
   - 
   - player
   - grabbable
-  - 
-  - 
+  - playerBullet
+  - enemy
   - 
   - 
   - 
