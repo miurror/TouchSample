@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 1
-  buttonName: LHandTrigger
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2
@@ -586,6 +585,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114900030220436328, guid: 6f85a5b7a24f68e4bae1f5494f5e9562,
+        type: 2}
+      propertyPath: node
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114900030220436328, guid: 6f85a5b7a24f68e4bae1f5494f5e9562,
+        type: 2}
+      propertyPath: controller
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135667281181287466, guid: 6f85a5b7a24f68e4bae1f5494f5e9562, type: 2}
     - {fileID: 136090838189891592, guid: 6f85a5b7a24f68e4bae1f5494f5e9562, type: 2}
@@ -806,6 +815,11 @@ Prefab:
     - target: {fileID: 1168590508142068, guid: 6f85a5b7a24f68e4bae1f5494f5e9562, type: 2}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114900030220436328, guid: 6f85a5b7a24f68e4bae1f5494f5e9562,
+        type: 2}
+      propertyPath: node
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135667281181287466, guid: 6f85a5b7a24f68e4bae1f5494f5e9562, type: 2}
@@ -1267,7 +1281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 2
-  buttonName: RHandTrigger
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2
