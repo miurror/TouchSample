@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Grab : MonoBehaviour {
 
 
 	public OVRInput.Controller controller;
-	public string buttonName;
+
+    public const float THRESH_GRAB = 0.55f;
+    public const float THRESH_DROP = 0.35f;
+
+	private bool grabbing;
 
 	public float grabRadius;
 	public LayerMask grabMask;
 
 	private GameObject grabbedObject;
-	private bool grabbing;
 
 	private Quaternion lastRotation, currentRotation;
 
@@ -78,9 +79,10 @@ public class Grab : MonoBehaviour {
 			lastRotation = currentRotation;
 			currentRotation = grabbedObject.transform.rotation;
 		}
-
-		if(!grabbing && Input.GetAxis(buttonName) == 1) GrabObject();
-		if(grabbing && Input.GetAxis(buttonName) < 1) DropObject();
-
+		
+		OVRInput.Update();
+        
+		if(!grabbing && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller) >= THRESH_GRAB) GrabObject();
+        if(grabbing && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller) <= THRESH_DROP) DropObject();	
 	}
 }
