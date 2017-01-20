@@ -18,7 +18,6 @@ public class Grab : MonoBehaviour {
 	private Quaternion lastRotation, currentRotation;
 
 	void GrabObject(){
-		grabbing = true;
 
 		RaycastHit[] hits;
 
@@ -32,6 +31,7 @@ public class Grab : MonoBehaviour {
 				if (hits[i].distance < hits[closestHit].distance) closestHit = i;
 			}
 
+			grabbing = true;
 			grabbedObject = hits[closestHit].transform.gameObject;
 			grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 			grabbedObject.transform.position = transform.position;
@@ -50,6 +50,7 @@ public class Grab : MonoBehaviour {
 	}
 
 	void DropObject(){
+
 		grabbing = false;
 
 		if (grabbedObject != null){
