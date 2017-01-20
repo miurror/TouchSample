@@ -19,20 +19,26 @@ public class Grab : MonoBehaviour {
 
 	void GrabObject(){
 
-		RaycastHit[] hits;
+		Collider[] hits;
+//		RaycastHit[] hits;
 
-		hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0f, grabMask);
+		hits = Physics.OverlapSphere(transform.position, grabRadius, grabMask);
+//		hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0f, grabMask);
 
 		if (hits.Length > 0){
 			
 			int closestHit = 0;
 
 			for (int i = 0; i < hits.Length; i++) {
-				if (hits[i].distance < hits[closestHit].distance) closestHit = i;
+				//if ((hits[i].transform.position - transform.position).sqrMagnitude < (hits[closestHit].transform.position - transform.position).sqrMagnitude) closestHit = i;
+				if (Vector3.Distance(hits[i].transform.position,transform.position) < Vector3.Distance(hits[closestHit].transform.position,transform.position)) closestHit = i;
+//				if (hits[i].distance < hits[closestHit].distance) closestHit = i;
 			}
 
 			grabbing = true;
-			grabbedObject = hits[closestHit].transform.gameObject;
+			//grabbedObject = hits[closestHit].transform.gameObject;
+			grabbedObject = hits[closestHit].attachedRigidbody.gameObject;
+//			grabbedObject = hits[closestHit].rigidbody.gameObject;
 			grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 			grabbedObject.transform.position = transform.position;
 			grabbedObject.transform.parent = transform;
